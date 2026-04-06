@@ -1,4 +1,4 @@
-# Proyecto-Edge (luego pensamos en el título)
+# Proyecto-Edge
 
 # Visión del Proyecto
 
