@@ -105,9 +105,11 @@ https://rosariolozanodm.atlassian.net/?continue=https%3A%2F%2Frosariolozanodm.at
 ## Spike Arquitectonico
 
 1. Objetivo del Spike
+   
 El objetivo principal de este spike es mitigar el mayor riesgo técnico del proyecto: la integración y comunicación fluida entre todas las capas de la arquitectura (Hardware $\rightarrow$ Edge Computing $\rightarrow$ Cloud). Antes de proceder con el desarrollo a gran escala de las lógicas de procesamiento o el diseño estético de la interfaz, es fundamental validar que un dato generado en el nodo sensor pueda viajar con éxito hasta la plataforma en la nube.
 
 2. Alcance y Metodología
+
 Para este experimento se construirá un hilo de comunicación vertical de baja fidelidad, priorizando la velocidad de ejecución sobre la robustez o precisión del sistema. El flujo se dividirá en tres etapas:
 
 Captura y Transmisión (Nivel de Nodo): 
@@ -121,6 +123,7 @@ La Raspberry Pi actuará puramente como un broker o pasarela . Recibirá el paqu
 Visualización Básica (Nivel Cloud): 
 
 Se empleará una plataforma de IoT de rápido prototipado como Ubidots para reflejar el valor numérico recibido en un widget gráfico simple en tiempo real.
+
 
 3. Criterios de Éxito
 Este Spike se considerará completado y exitoso si se cumplen las siguientes condiciones:
