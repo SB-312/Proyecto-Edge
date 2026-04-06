@@ -44,5 +44,52 @@ A continuación se detallan los costos de los componentes utilizados. Cabe desta
 | **Misceláneos** | Cables, Jumpers y Protoboards | 1 | $30.000 | $30.000 | En Stock |
 | **TOTAL ESTIMADO** | | | | **$781.000** | |
 
-# Link del Jira
+
+# Planeación y Ejecución Ágil
+ 
+# Definicion del MVP
+
+El Producto Mínimo Viable consistirá en el despliegue de al menos dos nodos embebidos con sensores de $CO_2$ en dos espacios cerrados distintos. Estos enviarán datos a una Raspberry Pi central, la cual procesará la información para determinar el nivel de uso mediante umbrales establecidos. El usuario final (personal de operaciones) podrá visualizar a través de una plataforma en la nube un dashboard básico con un mapa de calor simplificado (estilo semáforo) para identificar qué salas requieren limpieza prioritaria.
+
+## Features
+
+### 1. Hardware y Captura de Datos (Nodos y Pasarela)
+
+Lectura de datos de $CO_2$ en tiempo real |  Must-have
+El dispositivo embebido debe ser capaz de leer el sensor de $CO_2$ a intervalos regulares.
+
+Transmisión inalámbrica de datos a la Raspberry Pi |  Must-have
+Envío de las lecturas desde los nodos embebidos hacia el concentrador (Raspberry Pi) usando el protocolo que elijas (Wi-Fi, Bluetooth, LoRa, etc.).
+
+Monitoreo de batería/estado del nodo |  Nice-to-have
+Saber si un nodo se desconectó o se está quedando sin energía. No detiene la prueba de concepto inicial.
+
+### 2. Procesamiento y Lógica (Raspberry Pi)
+
+Algoritmo de cálculo de ocupación por umbral |  Must-have
+Descripción: La Raspberry debe procesar los datos crudos de $CO_2$ ($ppm$) y determinar, bajo una regla simple (ej. si supera los $800\text{ ppm}$ durante $X$ minutos), que el espacio ha sido "altamente transitado" y requiere limpieza.
+
+Base de datos local en la Raspberry Pi |  Must-have
+Descripción: Almacenar las lecturas para poder generar el histórico del día.
+
+Algoritmo de predicción de tráfico | Nice-to-have
+Descripción: Usar Inteligencia Artificial para predecir qué días u horas se llenará más un salón. Muy avanzado para un MVP.
+
+### 3. Visualización y Dashboard (Software / Nube)
+
+Mapa de calor estático o por zonas en el Dashboard |  Must-have
+Descripción: Una representación visual en la web donde las habitaciones cambien de color (Rojo = Requiere limpieza, Verde = Limpio/Poco uso) según los datos de la Raspberry.
+
+Acceso remoto al Dashboard vía Nube |  Must-have
+Descripción: Poder visualizar este estado desde un navegador fuera de la red local del edificio.
+
+Interfaz Ultra-Pulida / Render 3D del edificio |  Nice-to-have
+Descripción: Un mapa interactivo súper estético. Para el MVP basta con un plano 2D simple o incluso bloques de colores que representen las salas.
+
+Sistema de alertas por Telegram / WhatsApp |  Nice-to-have
+Descripción: Que le llegue un mensaje automático al personal de limpieza. Sería genial, pero para el MVP basta con que miren la pantalla del dashboard.
+
+# Link del Cronograma
 https://rosariolozanodm.atlassian.net/?continue=https%3A%2F%2Frosariolozanodm.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10033&atlOrigin=eyJpIjoiMmY2ODU1N2NhMDY3NDc2ZTg0M2EzYzIwNjc5Y2RjZjMiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
+
+# Spike Arquitectonico
