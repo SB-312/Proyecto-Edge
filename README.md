@@ -99,7 +99,34 @@ Sistema de alertas por Telegram / WhatsApp |  Nice-to-have
 
 Descripción: Que le llegue un mensaje automático al personal de limpieza. Sería genial, pero para el MVP basta con que miren la pantalla del dashboard.
 
-# Link del Cronograma
+## Link del Cronograma
 https://rosariolozanodm.atlassian.net/?continue=https%3A%2F%2Frosariolozanodm.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10033&atlOrigin=eyJpIjoiMmY2ODU1N2NhMDY3NDc2ZTg0M2EzYzIwNjc5Y2RjZjMiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
 
-# Spike Arquitectonico
+## Spike Arquitectonico
+
+1. Objetivo del Spike
+El objetivo principal de este spike es mitigar el mayor riesgo técnico del proyecto: la integración y comunicación fluida entre todas las capas de la arquitectura (Hardware $\rightarrow$ Edge Computing $\rightarrow$ Cloud). Antes de proceder con el desarrollo a gran escala de las lógicas de procesamiento o el diseño estético de la interfaz, es fundamental validar que un dato generado en el nodo sensor pueda viajar con éxito hasta la plataforma en la nube.
+
+2. Alcance y Metodología
+Para este experimento se construirá un hilo de comunicación vertical de baja fidelidad, priorizando la velocidad de ejecución sobre la robustez o precisión del sistema. El flujo se dividirá en tres etapas:
+
+Captura y Transmisión (Nivel de Nodo): 
+
+Se utilizará un nodo embebido conectado a un sensor de CO2 (o en su defecto, un simulador de datos numéricos). Su única tarea será empaquetar una lectura básica y transmitirla de manera inalámbrica.
+
+Recepción y Redirección (Nivel Edge):
+
+La Raspberry Pi actuará puramente como un broker o pasarela . Recibirá el paquete de datos del nodo y, sin aplicar filtros complejos de software, lo reenviará hacia la nube a través de Internet.
+
+Visualización Básica (Nivel Cloud): 
+
+Se empleará una plataforma de IoT de rápido prototipado como Ubidots para reflejar el valor numérico recibido en un widget gráfico simple en tiempo real.
+
+3. Criterios de Éxito
+Este Spike se considerará completado y exitoso si se cumplen las siguientes condiciones:
+
+Visibilidad del dato: El valor de CO2 generado en el nodo embebido se visualiza en el dashboard de la nube con un retraso (latencia) aceptable para el monitoreo de espacios.
+
+Identificación de cuellos de botella: Se logra identificar si existen pérdidas de paquetes de datos en la comunicación inalámbrica hacia la Raspberry Pi o fallas de conexión hacia la nube.
+
+Definición de librerías definitivas: Se descartan o aprueban las librerías de comunicación utilizadas en los dispositivos para la fase de producción del MVP.
